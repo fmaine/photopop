@@ -1,0 +1,110 @@
+<style>
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+#pp-cover-image {
+    /* The image used */
+    background-image: url("");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+</style>
+
+<script>
+
+var coverImages = new Array();
+var currentIndex = 0;
+var intervalId;
+
+$(document).ready(function(){
+	loadCoverImages();
+	});
+
+function loadCoverImages(){
+	var serie=qs('s');
+	if (serie==null)
+		serie='cover-images';
+	$.getJSON('/photos/'+serie, function(json) {
+  		// here you have the value
+  		for (i=0;i<json.length;i++){
+  			coverImages.push(json[i]);
+  		}
+		displayCover(0);
+		startSlideShow();
+	});
+}
+
+function displayCover(i){
+	//console.log('displayCover '+i+' '+coverImages[i]);
+	$("#pp-cover-image").css('background-image', 'url(' + coverImages[i] + ')');
+}
+
+function prevChart() {
+	if (--currentIndex < 0)
+		currentIndex= coverImages.length-1;
+	displayCover(currentIndex);
+	stopSlideShow();
+	startSlideShow();
+}
+
+function nextChart() {
+	if (++currentIndex >= coverImages.length)
+		currentIndex=0;
+	displayCover(currentIndex);
+	stopSlideShow();
+	startSlideShow();
+}
+
+function startSlideShow() {
+	intervalId = setInterval(nextChart, 4000);
+}
+
+function stopSlideShow() {
+	clearInterval(intervalId);
+}
+
+function linkToAlbumList() {
+	//document.location.href = "?p=album-list";
+	document.location.href = "/Galerie-Divagations";
+}
+
+// Retrouver la valeur associée à une clé de la query string de la page.
+function qs(key) {
+    key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
+    var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
+    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+}
+
+</script>
+
+
+<div id="pp-cover-image"">
+	<div class="pp-carousel-table">
+		<table class="pp-carousel-table"><tbody>
+			<tr>
+			<td class="pp-carousel-prev" onclick="prevChart()" title="Precedent">
+				<span class="pp-carousel-glyph glyphicon glyphicon-chevron-left"></span></td>
+			<td class="pp-carousel-link" onclick="linkToAlbumList()" title="Visiter">
+				<!--
+				<span class="pp-carousel-glyph glyphicon glyphicon-th"></span>
+				-->
+				<p>    </p>
+			</td>
+			<td class="pp-carousel-next" onclick="nextChart()" title="Suivant">
+				<span class="pp-carousel-glyph glyphicon glyphicon-chevron-right"></span></td>
+			</tr>
+		</tbody></table>
+	</div> <!-- pp-carousel -->
+	<div class="pp-carousel-label">
+	</div>
+</div><!-- /.container -->

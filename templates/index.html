@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include 'content-head.html' %}
+<script>
+	function linkToPage(url) {
+		document.location.href = url;
+	}
+</script>
+
+</head>
+  <body>
+    {% include 'nav-bar.html' %}
+    {% include 'carousel.html' %}
+    {% include 'content-tail.html' %}
+<!--
+    <?php
+    	require "nav-bar.php";
+    	// Choix du contenu en fonction de la page passée en parametre.
+    	switch ($_GET["p"]) {
+    		case "cover":
+	    		require "carousel.php";
+    	    	break;
+    		case "album-list":
+	    		require "album-list.php";
+    	    	break;
+    		case "album":
+	    		require "album.php";
+        		break;
+    		case "tarifs":
+	    		require "tarifs.php";
+        		break;
+    		case "apropos":
+	    		require "apropos.php";
+        		break;
+    		case "bio":
+	    		require "bio.php";
+        		break;
+    		case "404":
+	    		require "404.php";
+        		break;
+        	default:
+        		require "carousel.php";
+		}
+    ?>
+-->
+  </body>
+</html>
