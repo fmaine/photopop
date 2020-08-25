@@ -1,0 +1,9 @@
+# wg2 .gitignore file
+
+**/log/
+**/__pycache__
+**/venv
+
+*.ipynb*
+.pytest*
+.DS_Store

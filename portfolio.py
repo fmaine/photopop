@@ -17,9 +17,9 @@ import json
 class Portfolio():
 
     def __init__(self):
-        self._images_dir = os.environ.get('IMAGES_DIR','static/images')
+        self._images_dir = os.environ.get('PHOTOPOP_IMAGES_DIR','static/images')
 
-    def get_series_urls(self,id):
+    def get_photos(self,id):
         result = []
         dir = self._images_dir+'/'+id
         print('dir : ',dir)
@@ -49,6 +49,14 @@ class Portfolio():
                                 serie['photos'].append(photo)
                         series.append(serie)
         return series
+
+    def get_label(self,name):
+        if name ==  'Divagations':
+            return 'Divagations Pigalliennes et Lointaines'
+        elif name == 'UnSoir':
+            return 'Rencontres d\'un soir'
+        else:
+            return ''
 
     def is_jpeg(self,filename):
         return len(filename)>3 and filename[-4:]=='.jpg'

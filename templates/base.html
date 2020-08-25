@@ -1,45 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   {% include 'content-head.html' %}
-
-  {% block script %}{% endblock %}
-
 </head>
   <body>
     {% include 'nav-bar.html' %}
     {% block content %}{% endblock %}
     {% include 'content-tail.html' %}
-<!--
-    <?php
-    	require "nav-bar.php";
-    	// Choix du contenu en fonction de la page passée en parametre.
-    	switch ($_GET["p"]) {
-    		case "cover":
-	    		require "carousel.php";
-    	    	break;
-    		case "album-list":
-	    		require "album-list.php";
-    	    	break;
-    		case "album":
-	    		require "album.php";
-        		break;
-    		case "tarifs":
-	    		require "tarifs.php";
-        		break;
-    		case "apropos":
-	    		require "apropos.php";
-        		break;
-    		case "bio":
-	    		require "bio.php";
-        		break;
-    		case "404":
-	    		require "404.php";
-        		break;
-        	default:
-        		require "carousel.php";
-		}
-    ?>
--->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/bootstrap/jquery-3.5.1.min.js" ></script>
+    <script src="/bootstrap/popper.min.js" ></script>
+    <script src="/bootstrap/bootstrap.min.js" ></script>
+    {% block script %}{% endblock %}
   </body>
 </html>

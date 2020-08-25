@@ -18,16 +18,17 @@ _portfolio = photopop.portfolio.Portfolio()
 
 @app.route("/")
 def index():
-    return flask.render_template('index.html')
+    return flask.render_template('carousel.html')
 
 @app.route("/Galerie/<name>")
 def galerie(name):
     pf = _portfolio.get_collections()
+    label = _portfolio.get_label(name)
     series = []
     for s in pf:
         if s['collection'] == name:
             series.append(s)
-    return flask.render_template('album-list.html', series=series)
+    return flask.render_template('album-list.html', series=series, label=label)
 
 @app.route("/Album/<name>")
 def album(name):
@@ -58,7 +59,7 @@ def images(path):
 # API Photos
 @app.route("/photos/<name>", methods=['get'])
 def photos(name):
-    return json.dumps(_portfolio.get_series_urls(name))
+    return json.dumps(_portfolio.get_photos(name))
 
 # API series
 @app.route("/series/", methods=['get'])
@@ -72,5 +73,5 @@ def admin():
 
 @app.route("/test")
 def test():
-    images = _portfolio.get_series_urls('Scandale')
+    images = _portfolio.get_photos('Scandale')
     return flask.render_template('test.html',images=images)

@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block script %}
 <style>
 body, html {
     height: 100%;
@@ -75,7 +78,7 @@ function stopSlideShow() {
 
 function linkToAlbumList() {
 	//document.location.href = "?p=album-list";
-	document.location.href = "/Galerie-Divagations";
+	document.location.href = "/Galerie/Divagations";
 }
 
 // Retrouver la valeur associée à une clé de la query string de la page.
@@ -87,24 +90,28 @@ function qs(key) {
 
 </script>
 
+{% endblock %}
 
+{% block content %}
 <div id="pp-cover-image"">
 	<div class="pp-carousel-table">
 		<table class="pp-carousel-table"><tbody>
-			<tr>
-			<td class="pp-carousel-prev" onclick="prevChart()" title="Precedent">
-				<span class="pp-carousel-glyph glyphicon glyphicon-chevron-left"></span></td>
-			<td class="pp-carousel-link" onclick="linkToAlbumList()" title="Visiter">
-				<!--
-				<span class="pp-carousel-glyph glyphicon glyphicon-th"></span>
-				-->
-				<p>    </p>
-			</td>
-			<td class="pp-carousel-next" onclick="nextChart()" title="Suivant">
-				<span class="pp-carousel-glyph glyphicon glyphicon-chevron-right"></span></td>
+  			<tr>
+  			<td class="pp-carousel-prev" onclick="prevChart()" title="Precedent">
+  				<span class="pp-carousel-glyph glyphicon glyphicon-chevron-left"></span></td>
+  			<td class="pp-carousel-link" onclick="linkToAlbumList()" title="Visiter">
+  				<!--
+  				<span class="pp-carousel-glyph glyphicon glyphicon-th"></span>
+  				-->
+  				<p>    </p>
+  			</td>
+  			<td class="pp-carousel-next" onclick="nextChart()" title="Suivant">
+  				<span class="pp-carousel-glyph glyphicon glyphicon-chevron-right"></span></td>
 			</tr>
 		</tbody></table>
 	</div> <!-- pp-carousel -->
 	<div class="pp-carousel-label">
 	</div>
 </div><!-- /.container -->
+
+{% endblock %}
